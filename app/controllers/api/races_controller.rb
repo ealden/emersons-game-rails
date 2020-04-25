@@ -1,7 +1,9 @@
 class Api::RacesController < ApiController
   def settings
-    render json: {
-      testMode: true
+    settings = {
+      testMode: Rails.env.test?
     }
+
+    render json: settings
   end
 end
