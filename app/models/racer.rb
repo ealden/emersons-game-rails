@@ -1,4 +1,6 @@
 class Racer < ApplicationRecord
+  has_many :rolls
+
   belongs_to :race
 
   def roll roll, speed: nil
