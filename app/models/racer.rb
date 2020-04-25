@@ -26,7 +26,9 @@ class Racer < ApplicationRecord
                       roll:         roll,
                       move:         move,
                       new_position: self.position,
-                      new_damage:   self.damage
+                      new_damage:   self.damage,
+                      crashed:      self.crashed?,
+                      won:          self.won?
 
     save
   end
