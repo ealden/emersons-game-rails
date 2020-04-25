@@ -5,11 +5,7 @@ class Api::RacesController < ApiController
   end
 
   def settings
-    settings = {
-      testMode: Rails.env.test?
-    }
-
-    render json: settings
+    @test_mode = Rails.env.test?
   end
 
   def roll
