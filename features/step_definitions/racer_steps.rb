@@ -14,3 +14,7 @@ end
 Given 'I see the finish line at position {int}' do |finish_line|
   @race.finish_line = finish_line
 end
+
+When  'I choose {string} speed' do |speed|
+  @speed = speed.to_sym
+end
