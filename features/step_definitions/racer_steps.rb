@@ -18,3 +18,7 @@ end
 When  'I choose {string} speed' do |speed|
   @speed = speed.to_sym
 end
+
+When  'I roll a {int}' do |roll|
+  @racer.roll roll, speed: @speed
+end
