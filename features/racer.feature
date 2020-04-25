@@ -117,7 +117,6 @@ Feature: Emerson's Game
     And   I must now have damage of 0
     And   I must see the race result: --
 
-  @wip
   Scenario: Welcome Message
     Given I am in a race
     When  I try to view the race

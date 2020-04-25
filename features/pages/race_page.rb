@@ -1,8 +1,10 @@
 class RacePage < SitePrism::Page
   set_url '/'
 
-  element :roll_field,          '#test-roll'
-  element :processing_field,    '#test-processing'
+  element :roll_field,        '#test-roll'
+  element :processing_field,  '#test-processing'
+  element :message_field,     '#message'
+
   element :normal_speed_button, '#roll-normal-speed'
   element :super_speed_button,  '#roll-super-speed'
 
@@ -29,6 +31,12 @@ class RacePage < SitePrism::Page
     wait_until_processed
 
     find("#test-racer-#{id}-damage").text.to_i
+  end
+
+  def message
+    wait_until_processed
+
+    message_field.text
   end
 
   private

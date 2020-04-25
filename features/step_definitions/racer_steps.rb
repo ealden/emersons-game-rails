@@ -29,6 +29,13 @@ When  'I roll a {int}' do |roll|
   @page.roll roll, speed: @speed
 end
 
+When  'I try to view the race' do
+  @race.update finish_line: 10
+
+  @page = RacePage.new
+  @page.load
+end
+
 Then  'I must now be at position {int}' do |new_position|
   expect(@page.position(@racer.id)).to eql new_position
 end
@@ -94,4 +101,8 @@ end
 
 Then  'Win: "NO"' do
   expect(@last_roll).not_to be_won
+end
+
+Then  'I must see the message: {string}' do |message|
+  expect(@page.message).to eql message
 end
