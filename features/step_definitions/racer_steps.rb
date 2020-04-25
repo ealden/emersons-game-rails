@@ -82,3 +82,11 @@ end
 Then  'Crashed: "NO"' do
   expect(@last_roll).not_to be_crashed
 end
+
+Then  'Win: "YES"' do
+  expect(@last_roll.racer).to be_won
+end
+
+Then  'Win: "NO"' do
+  expect(@last_roll.racer).not_to be_won
+end

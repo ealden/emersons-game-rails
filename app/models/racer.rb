@@ -25,6 +25,8 @@ class Racer < ApplicationRecord
                       move:         move,
                       new_position: self.position,
                       new_damage:   self.damage
+
+    save
   end
 
   def won?

@@ -32,7 +32,7 @@ Feature: Emerson's Game
           * New Position: <New Position>
           * New Damage: <New Damage>
           * Crashed: "<Crashed>"
-    #       * Win: "<Win>"
+          * Win: "<Win>"
 
     Examples: NORMAL speed is move 1 for odd roll, 2 for even roll
 
