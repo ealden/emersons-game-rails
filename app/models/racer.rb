@@ -1,6 +1,8 @@
 class Racer < ApplicationRecord
   MAX_DAMAGE = 6
 
+  before_create :set_rank
+
   has_many :rolls
 
   belongs_to :race
@@ -54,5 +56,9 @@ class Racer < ApplicationRecord
                         new_damage:   self.damage,
                         crashed:      self.crashed?,
                         won:          self.won?
+    end
+
+    def set_rank
+      self.rank = Racer.count + 1
     end
 end

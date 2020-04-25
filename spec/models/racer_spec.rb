@@ -155,4 +155,16 @@ RSpec.describe Racer, type: :model do
       expect(racer).not_to be_crashed
     end
   end
+
+  describe :rank do
+    it 'must set rank based on order added' do
+      racer   = race.racers.create name: 'Alice'
+      racer2  = race.racers.create name: 'Bob'
+      racer3  = race.racers.create name: 'Charlie'
+
+      expect(racer.rank).to eql 1
+      expect(racer2.rank).to eql 2
+      expect(racer3.rank).to eql 3
+    end
+  end
 end
