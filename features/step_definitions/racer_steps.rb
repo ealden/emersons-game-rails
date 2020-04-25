@@ -58,3 +58,7 @@ end
 Then  'Speed: {string}' do |speed|
   expect(@last_roll.speed).to eql speed
 end
+
+Then  'Roll: {int}' do |roll|
+  expect(@last_roll.roll).to eql roll
+end

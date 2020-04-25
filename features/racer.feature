@@ -27,7 +27,7 @@ Feature: Emerson's Game
           * Position: <Position>
           * Damage: <Damage>
           * Speed: "<Speed>"
-    #       * Roll: <Roll>
+          * Roll: <Roll>
     #       * Move: <Move>
     #       * New Position: <New Position>
     #       * New Damage: <New Damage>
