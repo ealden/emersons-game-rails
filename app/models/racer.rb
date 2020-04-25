@@ -2,10 +2,12 @@ class Racer < ApplicationRecord
   def roll roll, speed: nil
     case speed
     when :NORMAL
-      self.position += ((roll.odd? ? 1 : 2) - self.damage)
+      move = ((roll.odd? ? 1 : 2) - self.damage)
     when :SUPER
-      self.position += (roll - self.damage)
+      move = (roll - self.damage)
       self.damage += 2
     end
+
+    self.position += [move, 0].max
   end
 end

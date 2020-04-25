@@ -38,6 +38,14 @@ RSpec.describe Racer, type: :model do
 
         expect(racer.position).to eql 0
       end
+
+      it 'must not move backwards' do
+        racer = Racer.new
+        racer.damage = 2
+        racer.roll 1, speed: :NORMAL
+
+        expect(racer.position).to eql 0
+      end
     end
 
     context 'with SUPER speed' do
@@ -81,7 +89,15 @@ RSpec.describe Racer, type: :model do
         expect(racer.position).to eql 0
         expect(racer.damage).to eql 3
       end
-    end
 
+      it 'must not move backwards' do
+        racer = Racer.new
+        racer.damage = 2
+        racer.roll 1, speed: :SUPER
+
+        expect(racer.position).to eql 0
+        expect(racer.damage).to eql 4
+      end
+    end
   end
 end
