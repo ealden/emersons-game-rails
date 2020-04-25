@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_25_080138) do
+ActiveRecord::Schema.define(version: 2020_04_25_083349) do
 
   create_table "racers", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -26,6 +26,22 @@ ActiveRecord::Schema.define(version: 2020_04_25_080138) do
     t.integer "finish_line", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rolls", force: :cascade do |t|
+    t.integer "race_id"
+    t.integer "racer_id"
+    t.integer "position", null: false
+    t.integer "damage", null: false
+    t.string "speed", null: false
+    t.integer "roll", null: false
+    t.integer "move", null: false
+    t.integer "new_position", null: false
+    t.integer "new_damage", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["race_id"], name: "index_rolls_on_race_id"
+    t.index ["racer_id"], name: "index_rolls_on_racer_id"
   end
 
 end
