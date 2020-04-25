@@ -74,3 +74,11 @@ end
 Then  'New Damage: {int}' do |new_damage|
   expect(@last_roll.new_damage).to eql new_damage
 end
+
+Then  'Crashed: "YES"' do
+  expect(@last_roll).to be_crashed
+end
+
+Then  'Crashed: "NO"' do
+  expect(@last_roll).not_to be_crashed
+end
