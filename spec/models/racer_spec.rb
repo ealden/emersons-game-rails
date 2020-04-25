@@ -119,7 +119,8 @@ RSpec.describe Racer, type: :model do
                                                   speed:        'SUPER',
                                                   roll:         6,
                                                   move:         4,
-                                                  new_position: 5
+                                                  new_position: 5,
+                                                  new_damage:   4
     end
   end
 

@@ -70,3 +70,7 @@ end
 Then  'New Position: {int}' do |new_position|
   expect(@last_roll.new_position).to eql new_position
 end
+
+Then  'New Damage: {int}' do |new_damage|
+  expect(@last_roll.new_damage).to eql new_damage
+end

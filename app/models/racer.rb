@@ -24,7 +24,7 @@ class Racer < ApplicationRecord
                       roll:         roll,
                       move:         move,
                       new_position: self.position,
-                      new_damage: 0
+                      new_damage:   self.damage
   end
 
   def won?

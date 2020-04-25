@@ -30,7 +30,7 @@ Feature: Emerson's Game
           * Roll: <Roll>
           * Move: <Move>
           * New Position: <New Position>
-    #       * New Damage: <New Damage>
+          * New Damage: <New Damage>
     #       * Crashed: "<Crashed>"
     #       * Win: "<Win>"
 
