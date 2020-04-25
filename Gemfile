@@ -33,6 +33,7 @@ group :test do
   gem 'webdrivers'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'site_prism'
 end
 
 group :development, :test do
