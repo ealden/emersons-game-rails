@@ -35,4 +35,8 @@ group :test do
   gem 'database_cleaner'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+group :development, :test do
+  gem 'rspec-rails', '~> 4.0.0'
+end
+
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
