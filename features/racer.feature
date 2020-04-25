@@ -26,7 +26,7 @@ Feature: Emerson's Game
     And   I must now have a log entry with the following:
           * Position: <Position>
           * Damage: <Damage>
-    #       * Speed: "<Speed>"
+          * Speed: "<Speed>"
     #       * Roll: <Roll>
     #       * Move: <Move>
     #       * New Position: <New Position>

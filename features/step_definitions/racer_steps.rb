@@ -54,3 +54,7 @@ end
 Then  'Damage: {int}' do |damage|
   expect(@last_roll.damage).to eql damage
 end
+
+Then  'Speed: {string}' do |speed|
+  expect(@last_roll.speed).to eql speed
+end
