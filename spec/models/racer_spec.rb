@@ -105,6 +105,17 @@ RSpec.describe Racer, type: :model do
         expect(racer.damage).to eql 4
       end
     end
+
+    it 'must log roll' do
+      racer = race.racers.create name: 'Alice'
+      racer.position = 1
+      racer.damage = 2
+      racer.save
+
+      racer.roll 6, speed: :SUPER
+
+      expect(racer.rolls.last).to have_attributes position: 1
+    end
   end
 
   describe :won? do

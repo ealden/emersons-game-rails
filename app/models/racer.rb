@@ -15,8 +15,8 @@ class Racer < ApplicationRecord
     self.position += [move, 0].max
     self.position = [self.position, self.race.finish_line].min
 
-    self.rolls.create race: self.race,
-                      position: 0,
+    self.rolls.create race:         self.race,
+                      position:     self.position_was,
                       damage: 0,
                       speed: '',
                       roll: 0,

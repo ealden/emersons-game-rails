@@ -41,6 +41,12 @@ Then  'I must see the race result: WIN' do
 end
 
 Then  'I must now have a log entry with the following:' do
-  expect(@race.last_roll).not_to be_nil
-  expect(@race.last_roll.racer).to eql @racer
+  @last_roll = @race.last_roll
+
+  expect(@last_roll).not_to be_nil
+  expect(@last_roll.racer).to eql @racer
+end
+
+Then  'Position: {int}' do |position|
+  expect(@last_roll.position).to eql position
 end
