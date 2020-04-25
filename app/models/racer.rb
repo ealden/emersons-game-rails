@@ -11,5 +11,10 @@ class Racer < ApplicationRecord
     end
 
     self.position += [move, 0].max
+    self.position = [self.position, self.race.finish_line].min
+  end
+
+  def won?
+    self.position >= self.race.finish_line
   end
 end

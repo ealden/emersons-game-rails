@@ -1,18 +1,19 @@
 Given 'I am in a race' do
-  @race = Race.new
-  @racer = Racer.new
+  @race = Race.create
+
+  @racer = @race.racers.create name: 'Alice'
 end
 
 Given 'I am at position {int}' do |position|
-  @racer.position = position
+  @racer.update position: position
 end
 
 Given 'I have damage of {int}' do |damage|
-  @racer.damage = damage
+  @racer.update damage: damage
 end
 
 Given 'I see the finish line at position {int}' do |finish_line|
-  @race.finish_line = finish_line
+  @race.update finish_line: finish_line
 end
 
 When  'I choose {string} speed' do |speed|
@@ -32,7 +33,9 @@ Then  'I must now have damage of {int}' do |new_damage|
 end
 
 Then  'I must see the race result: --' do
+  expect(@racer).not_to be_won
 end
 
 Then  'I must see the race result: WIN' do
+  expect(@racer).to be_won
 end
