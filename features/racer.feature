@@ -25,7 +25,7 @@ Feature: Emerson's Game
     And   I must see the race result: <Result>
     And   I must now have a log entry with the following:
           * Position: <Position>
-    #       * Damage: <Damage>
+          * Damage: <Damage>
     #       * Speed: "<Speed>"
     #       * Roll: <Roll>
     #       * Move: <Move>

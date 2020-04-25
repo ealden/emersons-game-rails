@@ -17,7 +17,7 @@ class Racer < ApplicationRecord
 
     self.rolls.create race:         self.race,
                       position:     self.position_was,
-                      damage: 0,
+                      damage:       self.damage_was,
                       speed: '',
                       roll: 0,
                       move: 0,

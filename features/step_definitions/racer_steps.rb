@@ -50,3 +50,7 @@ end
 Then  'Position: {int}' do |position|
   expect(@last_roll.position).to eql position
 end
+
+Then  'Damage: {int}' do |damage|
+  expect(@last_roll.damage).to eql damage
+end
