@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_25_070704) do
+ActiveRecord::Schema.define(version: 2020_04_25_080138) do
 
   create_table "racers", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2020_04_25_070704) do
     t.integer "damage", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "race_id"
+    t.index ["race_id"], name: "index_racers_on_race_id"
   end
 
   create_table "races", force: :cascade do |t|

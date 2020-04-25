@@ -1,4 +1,6 @@
 class Racer < ApplicationRecord
+  belongs_to :race
+
   def roll roll, speed: nil
     case speed
     when :NORMAL
