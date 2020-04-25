@@ -30,3 +30,9 @@ end
 Then  'I must now have damage of {int}' do |new_damage|
   expect(@racer.damage).to eql new_damage
 end
+
+Then  'I must see the race result: --' do
+end
+
+Then  'I must see the race result: WIN' do
+end
