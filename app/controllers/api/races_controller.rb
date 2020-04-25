@@ -1,7 +1,6 @@
 class Api::RacesController < ApiController
   def index
     @race = Race.last
-    @current_racer = @race.racers.last
   end
 
   def settings

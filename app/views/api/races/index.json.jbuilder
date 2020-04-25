@@ -9,13 +9,13 @@ json.racers @race.racers do |racer|
   json.crashed  racer.crashed?
 end
 json.currentRacer do
-  json.id       @current_racer.id
-  json.name     @current_racer.name
-  json.position @current_racer.position
-  json.damage   @current_racer.damage
-  json.rank     @current_racer.rank
-  json.winner   @current_racer.won?
-  json.crashed  @current_racer.crashed?
+  json.id       @race.current_racer.id
+  json.name     @race.current_racer.name
+  json.position @race.current_racer.position
+  json.damage   @race.current_racer.damage
+  json.rank     @race.current_racer.rank
+  json.winner   @race.current_racer.won?
+  json.crashed  @race.current_racer.crashed?
 end
 json.lastRoll   nil
 json.finishLine @race.finish_line
