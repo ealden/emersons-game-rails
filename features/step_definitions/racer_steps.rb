@@ -22,3 +22,7 @@ end
 When  'I roll a {int}' do |roll|
   @racer.roll roll, speed: @speed
 end
+
+Then  'I must now be at position {int}' do |new_position|
+  expect(@racer.position).to eql new_position
+end
