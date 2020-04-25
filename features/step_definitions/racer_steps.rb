@@ -39,3 +39,8 @@ end
 Then  'I must see the race result: WIN' do
   expect(@racer).to be_won
 end
+
+Then  'I must now have a log entry with the following:' do
+  expect(@race.last_roll).not_to be_nil
+  expect(@race.last_roll.racer).to eql @racer
+end

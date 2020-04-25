@@ -23,7 +23,7 @@ Feature: Emerson's Game
     Then  I must now be at position <New Position>
     And   I must now have damage of <New Damage>
     And   I must see the race result: <Result>
-    # And   I must now have a log entry with the following:
+    And   I must now have a log entry with the following:
     #       * Position: <Position>
     #       * Damage: <Damage>
     #       * Speed: "<Speed>"

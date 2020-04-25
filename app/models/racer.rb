@@ -14,6 +14,15 @@ class Racer < ApplicationRecord
 
     self.position += [move, 0].max
     self.position = [self.position, self.race.finish_line].min
+
+    self.rolls.create race: self.race,
+                      position: 0,
+                      damage: 0,
+                      speed: '',
+                      roll: 0,
+                      move: 0,
+                      new_position: 0,
+                      new_damage: 0
   end
 
   def won?
