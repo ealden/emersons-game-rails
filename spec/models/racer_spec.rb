@@ -30,6 +30,14 @@ RSpec.describe Racer, type: :model do
         racer.roll 6, speed: :NORMAL
         expect(racer.position).to eql 2
       end
+
+      it 'must deduct damage before moving' do
+        racer = Racer.new
+        racer.damage = 1
+        racer.roll 1, speed: :NORMAL
+
+        expect(racer.position).to eql 0
+      end
     end
 
     context 'with SUPER speed' do
@@ -64,6 +72,16 @@ RSpec.describe Racer, type: :model do
         expect(racer.position).to eql 6
         expect(racer.damage).to eql 2
       end
+
+      it 'must deduct damage before moving' do
+        racer = Racer.new
+        racer.damage = 1
+        racer.roll 1, speed: :SUPER
+
+        expect(racer.position).to eql 0
+        expect(racer.damage).to eql 3
+      end
     end
+
   end
 end
