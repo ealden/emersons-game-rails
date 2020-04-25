@@ -1,4 +1,6 @@
 Given 'I am in a race' do
+  Race.delete_all
+
   @race = Race.create
 
   @racer = @race.racers.create name: 'Alice'
@@ -21,23 +23,26 @@ When  'I choose {string} speed' do |speed|
 end
 
 When  'I roll a {int}' do |roll|
-  @racer.roll roll, speed: @speed
+  @page = RacePage.new
+  @page.load
+
+  @page.roll roll, speed: @speed
 end
 
 Then  'I must now be at position {int}' do |new_position|
-  expect(@racer.position).to eql new_position
+  expect(@page.position(@racer.id)).to eql new_position
 end
 
 Then  'I must now have damage of {int}' do |new_damage|
-  expect(@racer.damage).to eql new_damage
+  expect(@page.damage(@racer.id)).to eql new_damage
 end
 
 Then  'I must see the race result: --' do
-  expect(@racer).not_to be_won
+  expect(@page.position(@racer.id)).not_to eql @race.finish_line
 end
 
 Then  'I must see the race result: WIN' do
-  expect(@racer).to be_won
+  expect(@page.position(@racer.id)).to eql @race.finish_line
 end
 
 Then  'I must now have a log entry with the following:' do
