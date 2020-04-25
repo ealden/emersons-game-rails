@@ -2,16 +2,68 @@ require 'rails_helper'
 
 RSpec.describe Racer, type: :model do
   describe :roll do
-    it 'must return 1 if roll is odd' do
-      expect(Racer.new.roll(1, speed: nil)).to eql 1
-      expect(Racer.new.roll(3, speed: nil)).to eql 1
-      expect(Racer.new.roll(5, speed: nil)).to eql 1
+    context 'with NORMAL speed' do
+      it 'must move position to 1 if roll is odd' do
+        racer = Racer.new
+        racer.roll 1, speed: :NORMAL
+        expect(racer.position).to eql 1
+
+        racer = Racer.new
+        racer.roll 3, speed: :NORMAL
+        expect(racer.position).to eql 1
+
+        racer = Racer.new
+        racer.roll 5, speed: :NORMAL
+        expect(racer.position).to eql 1
+      end
+
+      it 'must move position to 2 if roll is even' do
+        racer = Racer.new
+        racer.roll 2, speed: :NORMAL
+        expect(racer.position).to eql 2
+
+        racer = Racer.new
+        racer.roll 4, speed: :NORMAL
+        expect(racer.position).to eql 2
+
+        racer = Racer.new
+        racer.roll 6, speed: :NORMAL
+        expect(racer.position).to eql 2
+      end
     end
 
-    it 'must return 2 if roll is even' do
-      expect(Racer.new.roll(1, speed: nil)).to eql 1
-      expect(Racer.new.roll(3, speed: nil)).to eql 1
-      expect(Racer.new.roll(5, speed: nil)).to eql 1
+    context 'with SUPER speed' do
+      it 'must move position to roll and add 1 damage' do
+        racer = Racer.new
+        racer.roll 1, speed: :SUPER
+        expect(racer.position).to eql 1
+        expect(racer.damage).to eql 2
+
+        racer = Racer.new
+        racer.roll 2, speed: :SUPER
+        expect(racer.position).to eql 2
+        expect(racer.damage).to eql 2
+
+        racer = Racer.new
+        racer.roll 3, speed: :SUPER
+        expect(racer.position).to eql 3
+        expect(racer.damage).to eql 2
+
+        racer = Racer.new
+        racer.roll 4, speed: :SUPER
+        expect(racer.position).to eql 4
+        expect(racer.damage).to eql 2
+
+        racer = Racer.new
+        racer.roll 5, speed: :SUPER
+        expect(racer.position).to eql 5
+        expect(racer.damage).to eql 2
+
+        racer = Racer.new
+        racer.roll 6, speed: :SUPER
+        expect(racer.position).to eql 6
+        expect(racer.damage).to eql 2
+      end
     end
   end
 end
