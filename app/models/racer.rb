@@ -1,4 +1,6 @@
 class Racer < ApplicationRecord
+  MAX_DAMAGE = 6
+
   has_many :rolls
 
   belongs_to :race
@@ -31,5 +33,9 @@ class Racer < ApplicationRecord
 
   def won?
     self.position >= self.race.finish_line
+  end
+
+  def crashed?
+    self.damage >= MAX_DAMAGE
   end
 end

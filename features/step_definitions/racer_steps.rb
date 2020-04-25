@@ -76,11 +76,11 @@ Then  'New Damage: {int}' do |new_damage|
 end
 
 Then  'Crashed: "YES"' do
-  expect(@last_roll).to be_crashed
+  expect(@last_roll.racer).to be_crashed
 end
 
 Then  'Crashed: "NO"' do
-  expect(@last_roll).not_to be_crashed
+  expect(@last_roll.racer).not_to be_crashed
 end
 
 Then  'Win: "YES"' do

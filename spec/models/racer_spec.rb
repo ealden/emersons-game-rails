@@ -132,4 +132,27 @@ RSpec.describe Racer, type: :model do
       expect(racer).to be_won
     end
   end
+
+  describe :crashed? do
+    it 'must return true if new damage is equal to max damage' do
+      racer = Racer.new
+      racer.damage = Racer::MAX_DAMAGE
+
+      expect(racer).to be_crashed
+    end
+
+    it 'must return true if new damage is greater than max damage' do
+      racer = Racer.new
+      racer.damage = (Racer::MAX_DAMAGE + 1)
+
+      expect(racer).to be_crashed
+    end
+
+    it 'must return false if new damage is less than max damage' do
+      racer = Racer.new
+      racer.damage = (Racer::MAX_DAMAGE - 1)
+
+      expect(racer).not_to be_crashed
+    end
+  end
 end
