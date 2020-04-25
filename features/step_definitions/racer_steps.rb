@@ -66,3 +66,7 @@ end
 Then  'Move: {int}' do |move|
   expect(@last_roll.move).to eql move
 end
+
+Then  'New Position: {int}' do |new_position|
+  expect(@last_roll.new_position).to eql new_position
+end

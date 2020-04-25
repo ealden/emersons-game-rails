@@ -23,7 +23,7 @@ class Racer < ApplicationRecord
                       speed:        speed,
                       roll:         roll,
                       move:         move,
-                      new_position: 0,
+                      new_position: self.position,
                       new_damage: 0
   end
 
