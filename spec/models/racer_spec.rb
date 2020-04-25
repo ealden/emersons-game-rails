@@ -117,7 +117,8 @@ RSpec.describe Racer, type: :model do
       expect(racer.rolls.last).to have_attributes position: 1,
                                                   damage:   2,
                                                   speed:    'SUPER',
-                                                  roll:     6
+                                                  roll:     6,
+                                                  move:     4
     end
   end
 

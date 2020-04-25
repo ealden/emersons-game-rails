@@ -62,3 +62,7 @@ end
 Then  'Roll: {int}' do |roll|
   expect(@last_roll.roll).to eql roll
 end
+
+Then  'Move: {int}' do |move|
+  expect(@last_roll.move).to eql move
+end

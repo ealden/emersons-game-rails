@@ -12,7 +12,9 @@ class Racer < ApplicationRecord
       self.damage += 2
     end
 
-    self.position += [move, 0].max
+    move = [move, 0].max
+
+    self.position += move
     self.position = [self.position, self.race.finish_line].min
 
     self.rolls.create race:         self.race,
@@ -20,7 +22,7 @@ class Racer < ApplicationRecord
                       damage:       self.damage_was,
                       speed:        speed,
                       roll:         roll,
-                      move: 0,
+                      move:         move,
                       new_position: 0,
                       new_damage: 0
   end
