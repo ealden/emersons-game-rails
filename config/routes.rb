@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   namespace :api do
     resources :races do
-      get :settings, on: :collection
+      collection do
+        get :settings
+        post :roll
+      end
     end
   end
 end
