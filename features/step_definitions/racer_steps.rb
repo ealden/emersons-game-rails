@@ -26,3 +26,7 @@ end
 Then  'I must now be at position {int}' do |new_position|
   expect(@racer.position).to eql new_position
 end
+
+Then  'I must now have damage of {int}' do |new_damage|
+  expect(@racer.damage).to eql new_damage
+end
