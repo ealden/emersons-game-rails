@@ -54,4 +54,27 @@ RSpec.describe Race, type: :model do
       expect(race).not_to be_over
     end
   end
+
+  describe :current_rank do
+    it 'must be nil if no racers' do
+      race = Race.create
+
+      expect(race.current_rank).to be_nil
+    end
+
+    it 'must be set to 1 if first racer added' do
+      race = Race.create
+      race.racers.create name: 'Alice'
+
+      expect(race.current_rank).to eql 1
+    end
+
+    it 'must not replace current_rank if already set' do
+      race = Race.create
+      race.racers.create name: 'Alice'
+      race.racers.create name: 'Bob'
+
+      expect(race.current_rank).to eql 1
+    end
+  end
 end
