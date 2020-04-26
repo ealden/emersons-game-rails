@@ -31,7 +31,7 @@ class Race < ApplicationRecord
   end
 
   def all_crashed?
-    not self.racers.map(&:crashed?).include? false
+    (not self.racers.empty?) and (not self.racers.map(&:crashed?).include? false)
   end
 
   def over?

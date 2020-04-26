@@ -50,6 +50,12 @@ RSpec.describe Race, type: :model do
 
       expect(race).not_to be_all_crashed
     end
+
+    it 'must return false if no racers' do
+      race = Race.new
+
+      expect(race).not_to be_all_crashed
+    end
   end
 
   describe :current_rank do
@@ -143,6 +149,12 @@ RSpec.describe Race, type: :model do
       race.racers.create name: 'Racer 3', damage: Racer::MAX_DAMAGE
 
       expect(race).to be_over
+    end
+
+    it 'must return fasle if no racers' do
+      race = Race.new
+
+      expect(race).not_to be_over
     end
   end
 end
