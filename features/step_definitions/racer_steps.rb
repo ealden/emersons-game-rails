@@ -1,9 +1,10 @@
 Given 'I am in a race' do
   Race.delete_all
 
-  @race = Race.create
+  @race = Race.new_race
+  @racer = @race.current_racer
 
-  @racer = @race.racers.create name: 'Alice'
+  @page = RacePage.new
 end
 
 Given 'I am at position {int}' do |position|
@@ -23,7 +24,6 @@ When  'I choose {string} speed' do |speed|
 end
 
 When  'I roll a {int}' do |roll|
-  @page = RacePage.new
   @page.load
 
   @page.roll roll, speed: @speed
@@ -32,18 +32,30 @@ end
 When  'I try to view the race' do
   @race.update finish_line: 10
 
-  @page = RacePage.new
   @page.load
 end
 
 When  'I choose to start over in a new race' do
-  @page = RacePage.new
   @page.load
 
   @page.new_race
 
   @race = Race.last
   @racer = @race.current_racer
+end
+
+When  'all racers have crashed!' do
+  @race.update finish_line: 10
+
+  @page.load
+
+  @page.roll 1, speed: :NORMAL
+
+  Racer.all.each do |racer|
+    racer.update damage: Racer::MAX_DAMAGE
+  end
+
+  @page.load
 end
 
 Then  'I must now be at position {int}' do |new_position|
@@ -115,4 +127,8 @@ end
 
 Then  'I must see the message: {string}' do |message|
   expect(@page.message).to eql message
+end
+
+Then  'our race must be over!' do
+  expect(@page).to be_over
 end

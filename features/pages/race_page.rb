@@ -9,6 +9,10 @@ class RacePage < SitePrism::Page
   element :super_speed_button,  '#roll-super-speed'
   element :new_race_button,     '#new-race'
 
+  element :race_controls, '#race-controls'
+  element :race_over,     '#race-over'
+
+
   def roll roll, speed:
     roll_field.set roll
 
@@ -45,6 +49,10 @@ class RacePage < SitePrism::Page
     wait_until_processed
 
     message_field.text
+  end
+
+  def over?
+    has_no_race_controls? and has_race_over?
   end
 
   private
