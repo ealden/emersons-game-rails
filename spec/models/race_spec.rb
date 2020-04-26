@@ -77,4 +77,38 @@ RSpec.describe Race, type: :model do
       expect(race.current_rank).to eql 1
     end
   end
+
+  describe :roll do
+    it 'must move current_rank to next racer after roll' do
+      race = Race.create
+
+      race.racers.create name: 'Alice'
+      racer2 = race.racers.create name: 'Bob'
+      race.racers.create name: 'Charlie'
+      race.racers.create name: 'Dave'
+
+      race.roll 1, speed: :NORMAL
+
+      expect(race.last_roll).not_to be_nil
+      expect(race.current_rank).to eql racer2.id
+      expect(race.current_racer).to eql racer2
+    end
+
+    it 'must move current_rank to first racer after last racer' do
+      race = Race.create
+
+      racer = race.racers.create name: 'Alice'
+      race.racers.create name: 'Bob'
+      race.racers.create name: 'Charlie'
+      racer4 = race.racers.create name: 'Dave'
+
+      race.update current_rank: racer4.rank
+
+      race.roll 1, speed: :NORMAL
+
+      expect(race.last_roll).not_to be_nil
+      expect(race.current_rank).to eql racer.id
+      expect(race.current_racer).to eql racer
+    end
+  end
 end

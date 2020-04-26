@@ -16,12 +16,18 @@ class Race < ApplicationRecord
     race
   end
 
+  def roll roll, speed:
+    self.current_racer.roll roll, speed: speed
+
+    next_racer
+  end
+
   def last_roll
     self.rolls.last
   end
 
   def current_racer
-    self.racers.first
+    self.racers.find_by rank: self.current_rank
   end
 
   def all_crashed?
@@ -31,4 +37,12 @@ class Race < ApplicationRecord
   def over?
     all_crashed?
   end
+
+  private
+
+    def next_racer
+      next_rank = ((self.current_rank % self.racers.count) + 1)
+
+      self.update current_rank: next_rank
+    end
 end
