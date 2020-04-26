@@ -124,7 +124,10 @@ RSpec.describe Api::RacesController, type: :request do
   describe 'POST /api/races/roll' do
     it 'must roll for racer' do
       race = Race.create
-      racer = race.racers.create name: 'Alice'
+      race.update finish_line: 10
+
+      race.racers.create name: 'Alice'
+      race.racers.create name: 'Bob'
 
       post '/api/races/roll', params: {
         speedType: 'NORMAL',
@@ -132,7 +135,70 @@ RSpec.describe Api::RacesController, type: :request do
       }
 
       expect(response).to have_http_status :ok
-      expect(race.last_roll).to have_attributes roll: 1, speed: 'NORMAL'
+
+      expected_json = {
+        id: 1,
+        racers: [
+          {
+            id: 1,
+            name: 'Alice',
+            position: 1,
+            damage: 0,
+            rank: 1,
+            winner: false,
+            crashed: false
+          },
+          {
+            id: 2,
+            name: 'Bob',
+            position: 0,
+            damage: 0,
+            rank: 2,
+            winner: false,
+            crashed: false
+          }
+        ],
+        currentRacer: {
+          id: 2,
+          name: 'Bob',
+          position: 0,
+          damage: 0,
+          rank: 2,
+          winner: false,
+          crashed: false
+        },
+        lastRoll: {
+          id: 1,
+          racer: {
+            id: 1,
+            name: 'Alice',
+            position: 1,
+            damage: 0,
+            rank: 1,
+            winner: false,
+            crashed: false
+          },
+          position: 0,
+          damage: 0,
+          speedType: 'NORMAL',
+          roll: 1,
+          move: 1,
+          newPosition: 1,
+          newDamage: 0,
+          crashed: false,
+          win: false,
+          damaged: false,
+          normalSpeed: true,
+          superSpeed: false
+        },
+        finishLine: 10,
+        allCrashed: false,
+        over: false
+      }
+
+      get '/api/races'
+
+      expect(response.body).to eql expected_json.to_json
     end
   end
 
