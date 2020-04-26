@@ -11,4 +11,8 @@ class Roll < ApplicationRecord
   def normal_speed?
     self.speed == :NORMAL.to_s
   end
+
+  def super_speed?
+    self.speed == :SUPER.to_s
+  end
 end

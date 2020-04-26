@@ -31,4 +31,20 @@ RSpec.describe Roll, type: :model do
       expect(roll).not_to be_normal_speed
     end
   end
+
+  describe :super_speed? do
+    it 'must be true if speed is SUPER' do
+      roll = Roll.new
+      roll.speed = :SUPER.to_s
+
+      expect(roll).to be_super_speed
+    end
+
+    it 'must be false if speed is :NORMAL' do
+      roll = Roll.new
+      roll.speed = :NORMAL.to_s
+
+      expect(roll).not_to be_super_speed
+    end
+  end
 end
