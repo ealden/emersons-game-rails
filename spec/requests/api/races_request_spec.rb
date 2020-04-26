@@ -106,6 +106,26 @@ RSpec.describe Api::RacesController, type: :request do
       expect(response).to have_http_status :ok
       expect(response.body).to eql expected_response.to_json
     end
+
+    it 'must render even if no racers' do
+      race = Race.create
+      race.update finish_line: 10
+
+      expected_json = {
+        id: 1,
+        racers: [],
+        currentRacer: nil,
+        lastRoll: nil,
+        finishLine: 10,
+        allCrashed: false,
+        over: false
+      }
+
+      get '/api/races'
+
+      expect(response).to have_http_status :ok
+      expect(response.body).to eql expected_json.to_json
+    end
   end
 
   describe 'GET /api/races/settings' do
