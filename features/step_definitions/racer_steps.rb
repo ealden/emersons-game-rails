@@ -36,6 +36,16 @@ When  'I try to view the race' do
   @page.load
 end
 
+When  'I choose to start over in a new race' do
+  @page = RacePage.new
+  @page.load
+
+  @page.new_race
+
+  @race = Race.last
+  @racer = @race.current_racer
+end
+
 Then  'I must now be at position {int}' do |new_position|
   expect(@page.position(@racer.id)).to eql new_position
 end

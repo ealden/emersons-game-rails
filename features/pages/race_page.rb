@@ -7,6 +7,7 @@ class RacePage < SitePrism::Page
 
   element :normal_speed_button, '#roll-normal-speed'
   element :super_speed_button,  '#roll-super-speed'
+  element :new_race_button,     '#new-race'
 
   def roll roll, speed:
     roll_field.set roll
@@ -18,6 +19,13 @@ class RacePage < SitePrism::Page
       super_speed_button.click
     end
 
+    wait_until_processed
+  end
+
+  def new_race
+    new_race_button.click
+
+    wait_until_processed
     wait_until_processed
   end
 
