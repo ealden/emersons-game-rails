@@ -21,4 +21,12 @@ class Race < ApplicationRecord
   def current_racer
     self.racers.first
   end
+
+  def all_crashed?
+    not self.racers.map(&:crashed?).include? false
+  end
+
+  def over?
+    all_crashed?
+  end
 end
