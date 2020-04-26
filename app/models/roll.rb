@@ -5,7 +5,7 @@ class Roll < ApplicationRecord
   belongs_to :racer
 
   def damaged?
-    self.damage.present? and (self.damage > NO_DAMAGE)
+    self.new_damage.present? and (self.new_damage > NO_DAMAGE)
   end
 
   def normal_speed?

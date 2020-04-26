@@ -2,15 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Roll, type: :model do
   describe :damaged? do
-    it 'must be false if no damage' do
+    it 'must be false if no new damage' do
       roll = Roll.new
 
       expect(roll).not_to be_damaged
     end
 
-    it 'must be true if at least 1 damage' do
+    it 'must be true if at least 1 new damage' do
       roll = Roll.new
-      roll.damage = 1
+      roll.new_damage = 1
 
       expect(roll).to be_damaged
     end
