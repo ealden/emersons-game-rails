@@ -29,7 +29,6 @@ RSpec.describe Race, type: :model do
       race.racers.create name: 'Racer 3', damage: Racer::MAX_DAMAGE
 
       expect(race).to be_all_crashed
-      expect(race).to be_over
     end
 
     it 'must return false if no racers crashed' do
@@ -40,7 +39,6 @@ RSpec.describe Race, type: :model do
       race.racers.create name: 'Charlie'
 
       expect(race).not_to be_all_crashed
-      expect(race).not_to be_over
     end
 
     it 'must return false if only some racers crashed' do
@@ -51,7 +49,6 @@ RSpec.describe Race, type: :model do
       race.racers.create name: 'Racer 3', damage: Racer::MAX_DAMAGE
 
       expect(race).not_to be_all_crashed
-      expect(race).not_to be_over
     end
   end
 
@@ -109,6 +106,43 @@ RSpec.describe Race, type: :model do
       expect(race.last_roll).not_to be_nil
       expect(race.current_rank).to eql racer.id
       expect(race.current_racer).to eql racer
+    end
+  end
+
+  describe :over? do
+    it 'must return false if no racer won yet' do
+      race = Race.create
+      race.update finish_line: 10
+
+      race.racers.create name: 'Alice'
+      race.racers.create name: 'Bob'
+      race.racers.create name: 'Charlie'
+      race.racers.create name: 'Dave'
+
+      expect(race).not_to be_over
+    end
+
+    it 'must return true if one racer crossed the finish line' do
+      race = Race.create
+      race.update finish_line: 10
+
+      race.racers.create name: 'Alice'
+      race.racers.create name: 'Bob', position: race.finish_line
+      race.racers.create name: 'Charlie'
+      race.racers.create name: 'Dave'
+
+      expect(race).to be_over
+    end
+
+    it 'must return true if all racers crashed' do
+      race = Race.create
+      race.update finish_line: 10
+
+      race.racers.create name: 'Racer 1', damage: Racer::MAX_DAMAGE
+      race.racers.create name: 'Racer 2', damage: Racer::MAX_DAMAGE
+      race.racers.create name: 'Racer 3', damage: Racer::MAX_DAMAGE
+
+      expect(race).to be_over
     end
   end
 end

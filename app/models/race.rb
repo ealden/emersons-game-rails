@@ -35,7 +35,7 @@ class Race < ApplicationRecord
   end
 
   def over?
-    all_crashed?
+    self.racers.map(&:won?).include?(true) || all_crashed?
   end
 
   private
