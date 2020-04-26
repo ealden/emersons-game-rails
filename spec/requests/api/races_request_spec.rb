@@ -41,6 +41,71 @@ RSpec.describe Api::RacesController, type: :request do
       expect(response).to have_http_status :ok
       expect(response.body).to eql expected_json.to_json
     end
+
+    it 'must be allCrashed if all racers crashed' do
+      race = Race.create
+      race.update finish_line: 10
+
+      racer = race.racers.create name: 'Alice'
+      racer.roll 1, speed: :NORMAL
+      racer.update damage: Racer::MAX_DAMAGE
+
+      expected_json = {
+        id: 1,
+        racers: [
+          {
+            id: 1,
+            name: 'Alice',
+            position: 1,
+            damage: 6,
+            rank: 1,
+            winner: false,
+            crashed: true
+          }
+        ],
+        currentRacer: {
+          id: 1,
+          name: 'Alice',
+          position: 1,
+          damage: 6,
+          rank: 1,
+          winner: false,
+          crashed: true
+        },
+        lastRoll: {
+          id: 1,
+          racer: {
+            id: 1,
+            name: 'Alice',
+            position: 1,
+            damage: 6,
+            rank: 1,
+            winner: false,
+            crashed: true
+          },
+          position: 0,
+          damage: 0,
+          speedType: 'NORMAL',
+          roll: 1,
+          move: 1,
+          newPosition: 1,
+          newDamage: 0,
+          crashed: false,
+          win: false,
+          damaged: false,
+          normalSpeed: true,
+          superSpeed: false
+        },
+        finishLine: 10,
+        allCrashed: true,
+        over: true
+      }
+
+      get '/api/races'
+
+      expect(response).to have_http_status :ok
+      expect(response.body).to eql expected_json.to_json
+    end
   end
 
   describe 'GET /api/races/settings' do
