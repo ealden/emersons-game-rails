@@ -121,7 +121,6 @@ Feature: Emerson's Game
     When  I try to view the race
     Then  I must see the message: "Time to RACE! Alice rolls first!"
 
-  @wip
   Scenario Outline: Message
     Given I am in a race
     And   I am at position <Position>
