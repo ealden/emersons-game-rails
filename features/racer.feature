@@ -148,6 +148,5 @@ Feature: Emerson's Game
     Then  our race must be over!
     And   I must see the message: "All racers CRASHED!!! This race is over!"
 
-  @wip
   Scenario: End
     When  it's over, it's over

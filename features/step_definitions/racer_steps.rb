@@ -58,6 +58,10 @@ When  'all racers have crashed!' do
   @page.load
 end
 
+When  'it\'s over, it\'s over' do
+  # No need as browser is closed regardless
+end
+
 Then  'I must now be at position {int}' do |new_position|
   expect(@page.position(@racer.id)).to eql new_position
 end
