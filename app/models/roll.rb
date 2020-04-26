@@ -7,4 +7,8 @@ class Roll < ApplicationRecord
   def damaged?
     self.damage.present? and (self.damage > NO_DAMAGE)
   end
+
+  def normal_speed?
+    self.speed == :NORMAL.to_s
+  end
 end
