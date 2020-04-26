@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_25_173006) do
+ActiveRecord::Schema.define(version: 2020_04_26_063727) do
 
   create_table "racers", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_04_25_173006) do
     t.integer "finish_line", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "current_rank"
   end
 
   create_table "rolls", force: :cascade do |t|
