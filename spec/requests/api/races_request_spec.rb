@@ -8,7 +8,7 @@ RSpec.describe Api::RacesController, type: :request do
 
       racer = race.racers.create name: 'Alice'
 
-      expected_json = {
+      expected_response = {
         id: 1,
         racers: [
           {
@@ -39,7 +39,7 @@ RSpec.describe Api::RacesController, type: :request do
       get '/api/races'
 
       expect(response).to have_http_status :ok
-      expect(response.body).to eql expected_json.to_json
+      expect(response.body).to eql expected_response.to_json
     end
 
     it 'must be allCrashed if all racers crashed' do
@@ -50,7 +50,7 @@ RSpec.describe Api::RacesController, type: :request do
       racer.roll 1, speed: :NORMAL
       racer.update damage: Racer::MAX_DAMAGE
 
-      expected_json = {
+      expected_response = {
         id: 1,
         racers: [
           {
@@ -104,20 +104,20 @@ RSpec.describe Api::RacesController, type: :request do
       get '/api/races'
 
       expect(response).to have_http_status :ok
-      expect(response.body).to eql expected_json.to_json
+      expect(response.body).to eql expected_response.to_json
     end
   end
 
   describe 'GET /api/races/settings' do
     it 'must return race settings' do
-      expected_json = {
+      expected_response = {
         testMode: true
       }
 
       get '/api/races/settings'
 
       expect(response).to have_http_status :ok
-      expect(response.body).to eql expected_json.to_json
+      expect(response.body).to eql expected_response.to_json
     end
   end
 
