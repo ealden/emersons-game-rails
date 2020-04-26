@@ -3,7 +3,8 @@ class RacePage < SitePrism::Page
 
   element :roll_field,        '#test-roll'
   element :processing_field,  '#test-processing'
-  element :message_field,     '#message'
+
+  element :message_field, '#message'
 
   element :normal_speed_button, '#roll-normal-speed'
   element :super_speed_button,  '#roll-super-speed'
@@ -30,24 +31,17 @@ class RacePage < SitePrism::Page
     new_race_button.click
 
     wait_until_processed
-    wait_until_processed
   end
 
   def position id
-    wait_until_processed
-
     find("#test-racer-#{id}-position").text.to_i
   end
 
   def damage id
-    wait_until_processed
-
     find("#test-racer-#{id}-damage").text.to_i
   end
 
   def message
-    wait_until_processed
-
     message_field.text
   end
 
@@ -58,6 +52,6 @@ class RacePage < SitePrism::Page
   private
 
     def wait_until_processed
-      wait_until_processing_field_visible text: false
+      wait_until_processing_field_invisible
     end
 end
