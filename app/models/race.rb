@@ -16,7 +16,7 @@ class Race < ApplicationRecord
     race
   end
 
-  def roll roll, speed:
+  def roll roll = (1 + Random.rand(6)), speed:
     self.current_racer.roll roll, speed: speed
 
     next_racer
