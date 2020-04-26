@@ -12,6 +12,8 @@ class Race < ApplicationRecord
     race.racers.create name: 'Bob'
     race.racers.create name: 'Charlie'
     race.racers.create name: 'Dave'
+
+    race
   end
 
   def last_roll
