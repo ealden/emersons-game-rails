@@ -17,4 +17,10 @@ class Api::RacesController < ApiController
 
     head :ok
   end
+
+  def new_race
+    Race.new_race
+
+    head :ok
+  end
 end

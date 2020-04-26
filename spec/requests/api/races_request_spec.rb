@@ -70,4 +70,17 @@ RSpec.describe Api::RacesController, type: :request do
       expect(race.last_roll).to have_attributes roll: 1, speed: 'NORMAL'
     end
   end
+
+  describe 'POST /api/races/new' do
+    it 'must create a new race' do
+      race = Race.create
+      racer = race.racers.create name: 'Alice'
+
+      post '/api/races/new', params: {}
+
+      expect(response).to have_http_status :ok
+      expect(Race.count).to eql 1
+      expect(Race.last).not_to be eql race
+    end
+  end
 end
