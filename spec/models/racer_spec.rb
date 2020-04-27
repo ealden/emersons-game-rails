@@ -1,7 +1,6 @@
-require 'rails_helper'
-
 RSpec.describe Racer, type: :model do
-  let(:race) { Race.create }
+  let(:racer) { race.racers.create name: 'Racer 1' }
+  let(:race)  { Race.create }
 
   before do
     race.finish_line = 10
@@ -125,34 +124,48 @@ RSpec.describe Racer, type: :model do
   end
 
   describe :won? do
-    it 'must return true if position is equal finish line' do
-      racer = race.racers.create name: 'Alice'
-      racer.position = 10
+    subject { racer.won? }
 
-      expect(racer).to be_won
+    before do
+      racer.position = position
+    end
+
+    context 'when position is equal to the finish line' do
+      let(:position) { race.finish_line }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when position is less than the finish line' do
+      let(:position) { race.finish_line - 1 }
+
+      it { is_expected.to be false }
     end
   end
 
   describe :crashed? do
-    it 'must return true if new damage is equal to max damage' do
-      racer = Racer.new
-      racer.damage = Racer::MAX_DAMAGE
+    subject { racer.crashed? }
 
-      expect(racer).to be_crashed
+    before do
+      racer.damage = damage
     end
 
-    it 'must return true if new damage is greater than max damage' do
-      racer = Racer.new
-      racer.damage = (Racer::MAX_DAMAGE + 1)
+    context 'when damage is equal to max damage' do
+      let(:damage) { Racer::MAX_DAMAGE }
 
-      expect(racer).to be_crashed
+      it { is_expected.to be true }
     end
 
-    it 'must return false if new damage is less than max damage' do
-      racer = Racer.new
-      racer.damage = (Racer::MAX_DAMAGE - 1)
+    context 'when damage is greater than max damage' do
+      let(:damage) { Racer::MAX_DAMAGE + 1 }
 
-      expect(racer).not_to be_crashed
+      it { is_expected.to be true }
+    end
+
+    context 'when damage is less than max damage' do
+      let(:damage) { Racer::MAX_DAMAGE - 1 }
+
+      it { is_expected.to be false }
     end
   end
 

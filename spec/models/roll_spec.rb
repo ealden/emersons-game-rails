@@ -1,50 +1,63 @@
-require 'rails_helper'
-
 RSpec.describe Roll, type: :model do
-  describe :damaged? do
-    it 'must be false if no new damage' do
-      roll = Roll.new
+  let(:roll) { Roll.new }
 
-      expect(roll).not_to be_damaged
+  describe :damaged? do
+    subject { roll.damaged? }
+
+    before do
+      roll.new_damage = new_damage
     end
 
-    it 'must be true if at least 1 new damage' do
-      roll = Roll.new
-      roll.new_damage = 1
+    context 'when no new damage' do
+      let(:new_damage) { 0 }
 
-      expect(roll).to be_damaged
+      it { is_expected.to be false }
+    end
+
+    context 'when at least 1 new damage' do
+      let(:new_damage) { 1 }
+
+      it { is_expected.to be true }
     end
   end
 
   describe :normal_speed? do
-    it 'must be true if speed is NORMAL' do
-      roll = Roll.new
-      roll.speed = :NORMAL.to_s
+    subject { roll.normal_speed? }
 
-      expect(roll).to be_normal_speed
+    before do
+      roll.speed = speed.to_s
     end
 
-    it 'must be false if speed is :SUPER' do
-      roll = Roll.new
-      roll.speed = :SUPER.to_s
+    context 'when NORMAL speed' do
+      let(:speed) { :NORMAL }
 
-      expect(roll).not_to be_normal_speed
+      it { is_expected.to be true }
+    end
+
+    context 'when SUPER speed' do
+      let(:speed) { :SUPER }
+
+      it { is_expected.to be false }
     end
   end
 
   describe :super_speed? do
-    it 'must be true if speed is SUPER' do
-      roll = Roll.new
-      roll.speed = :SUPER.to_s
+    subject { roll.super_speed? }
 
-      expect(roll).to be_super_speed
+    before do
+      roll.speed = speed.to_s
     end
 
-    it 'must be false if speed is :NORMAL' do
-      roll = Roll.new
-      roll.speed = :NORMAL.to_s
+    context 'when SUPER speed' do
+      let(:speed) { :SUPER }
 
-      expect(roll).not_to be_super_speed
+      it { is_expected.to be true }
+    end
+
+    context 'when NORMAL speed' do
+      let(:speed) { :NORMAL }
+
+      it { is_expected.to be false }
     end
   end
 end
