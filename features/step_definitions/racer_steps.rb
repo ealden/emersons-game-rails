@@ -2,6 +2,8 @@ Given 'I am in a race' do
   Race.delete_all
 
   @race = Race.new_race
+  @race.update finish_line: 10
+
   @racer = @race.current_racer
 
   @page = RacePage.new
@@ -30,8 +32,6 @@ When  'I roll a {int}' do |roll|
 end
 
 When  'I try to view the race' do
-  @race.update finish_line: 10
-
   @page.load
 end
 
@@ -45,8 +45,6 @@ When  'I choose to start over in a new race' do
 end
 
 When  'all racers have crashed!' do
-  @race.update finish_line: 10
-
   @page.load
 
   @page.roll 1, speed: :NORMAL
