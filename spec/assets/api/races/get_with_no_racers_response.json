@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "racers": [],
+  "currentRacer": null,
+  "lastRoll": null,
+  "finishLine": 10,
+  "allCrashed": false,
+  "over": false
+}
