@@ -14,11 +14,13 @@ class Racer < ApplicationRecord
     self.position += move
     self.damage += damage
 
-    self.position = [self.position, self.race.finish_line].min
-
     log roll, move, speed
 
     save
+  end
+
+  def position
+    [self[:position], self.race.finish_line].min
   end
 
   def won?
