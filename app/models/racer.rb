@@ -11,8 +11,6 @@ class Racer < ApplicationRecord
   def roll roll, speed: nil
     move, damage = calculate roll, speed: speed
 
-    move = [(move - self.damage), 0].max
-
     self.position += move
     self.damage += damage
 
@@ -42,6 +40,8 @@ class Racer < ApplicationRecord
         move = roll
         damage = 2
       end
+
+      move = [(move - self.damage), 0].max
 
       [move, damage]
     end
