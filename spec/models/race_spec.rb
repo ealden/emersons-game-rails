@@ -34,6 +34,18 @@ RSpec.describe Race, type: :model do
 
       it { is_expected.to eql 'Time to RACE!  Racer 1 rolls first!' }
     end
+
+    context 'when all racers crashed' do
+      before do
+        race.racers.create name: 'Racer 1', damage: Racer::MAX_DAMAGE
+        race.racers.create name: 'Racer 2', damage: Racer::MAX_DAMAGE
+        race.racers.create name: 'Racer 3', damage: Racer::MAX_DAMAGE
+
+        race.rolls.create
+      end
+
+      it { is_expected.to eql 'All racers CRASHED!!!  This race is over!' }
+    end
   end
 
   describe :all_crashed? do

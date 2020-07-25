@@ -27,6 +27,8 @@ class Race < ApplicationRecord
       'Racers to starting line!'
     elsif last_roll.nil?
       "Time to RACE!  #{current_racer.name} rolls first!"
+    elsif all_crashed?
+      'All racers CRASHED!!!  This race is over!'
     else
       nil
     end
