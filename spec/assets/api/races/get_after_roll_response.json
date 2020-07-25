@@ -19,6 +19,7 @@
       "crashed": false
     }
   ],
+  "message": null,
   "currentRacer": {
     "id": 2,
     "name": "Bob",

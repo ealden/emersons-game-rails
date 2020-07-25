@@ -8,6 +8,7 @@ json.racers @race.racers do |racer|
   json.winner   racer.won?
   json.crashed  racer.crashed?
 end
+json.message @race.message
 if @race.current_racer
   json.currentRacer do
     json.id       @race.current_racer.id

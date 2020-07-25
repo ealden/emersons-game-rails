@@ -22,6 +22,10 @@ class Race < ApplicationRecord
     next_racer
   end
 
+  def message
+    nil
+  end
+
   def last_roll
     self.rolls.last
   end

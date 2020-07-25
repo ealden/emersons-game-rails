@@ -9,6 +9,7 @@
     "winner": false,
     "crashed": true
   }],
+  "message": null,
   "currentRacer": {
     "id": 1,
     "name": "Alice",

@@ -4,6 +4,7 @@ var app = new Vue({
     return {
       finishLine: 0,
       racers: [],
+      raceMessage: null,
       currentRacer: null,
       lastRoll: null,
       allCrashed: false,
@@ -56,6 +57,7 @@ var app = new Vue({
         .then(response => {
           this.racers = response.data.racers
           this.finishLine = response.data.finishLine
+          this.raceMessage = response.data.message
           this.currentRacer = response.data.currentRacer
           this.lastRoll = response.data.lastRoll
           this.allCrashed = response.data.allCrashed
@@ -89,6 +91,7 @@ var app = new Vue({
             .then(response => {
               this.racers = response.data.racers
               this.finishLine = response.data.finishLine
+              this.raceMessage = response.data.message
               this.currentRacer = response.data.currentRacer
               this.lastRoll = response.data.lastRoll
               this.allCrashed = response.data.allCrashed
