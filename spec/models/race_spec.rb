@@ -86,6 +86,18 @@ RSpec.describe Race, type: :model do
 
       it { is_expected.to eql 'Racer 1 chose NORMAL speed, and rolled 0 and moved 0.  Racer 1 has 1 damage.  Racer 2 rolls next!' }
     end
+
+    context 'when last racer has damage and chose super speed' do
+      before do
+        race.racers.create name: 'Racer 1', damage: 1
+        race.racers.create name: 'Racer 2'
+        race.racers.create name: 'Racer 3'
+
+        race.roll 0, speed: :SUPER
+      end
+
+      it { is_expected.to eql 'Racer 1 chose SUPER speed, and rolled 0 and moved 0.  Racer 1 now has 3 damage.  Racer 2 rolls next!' }
+    end
   end
 
   describe :all_crashed? do
