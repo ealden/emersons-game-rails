@@ -51,6 +51,16 @@ RSpec.describe Racer, type: :model do
 
         expect(racer.position).to eql 0
       end
+
+      it 'must not move if zero or less roll' do
+        racer = race.racers.create name: 'Alice'
+        racer.roll 0, speed: :NORMAL
+        expect(racer.position).to eql 0
+
+        racer = race.racers.create name: 'Alice'
+        racer.roll -1, speed: :NORMAL
+        expect(racer.position).to eql 0
+      end
     end
 
     context 'with SUPER speed' do
