@@ -9,7 +9,7 @@
     "winner": false,
     "crashed": false
   }],
-  "message": null,
+  "message": "Time to RACE!  Alice rolls first!",
   "currentRacer": {
     "id": 1,
     "name": "Alice",

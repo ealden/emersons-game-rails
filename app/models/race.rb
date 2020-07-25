@@ -25,6 +25,8 @@ class Race < ApplicationRecord
   def message
     if racers.empty?
       'Racers to starting line!'
+    elsif last_roll.nil?
+      "Time to RACE!  #{current_racer.name} rolls first!"
     else
       nil
     end

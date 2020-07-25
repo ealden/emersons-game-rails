@@ -26,6 +26,14 @@ RSpec.describe Race, type: :model do
     context 'when no racers have joined' do
       it { is_expected.to eql 'Racers to starting line!' }
     end
+
+    context 'when racers have joined' do
+      before do
+        race.racers.create name: 'Racer 1'
+      end
+
+      it { is_expected.to eql 'Time to RACE!  Racer 1 rolls first!' }
+    end
   end
 
   describe :all_crashed? do
