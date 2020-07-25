@@ -23,6 +23,10 @@ RSpec.describe Race, type: :model do
   describe :message do
     subject { race.message }
 
+    before do
+      race.update finish_line: 10
+    end
+
     context 'when no racers have joined' do
       it { is_expected.to eql 'Racers to starting line!' }
     end
@@ -57,6 +61,18 @@ RSpec.describe Race, type: :model do
       end
 
       it { is_expected.to eql 'Racer 2 wins the race!  Congratulations!!!' }
+    end
+
+    context 'when last racer crashed' do
+      before do
+        race.racers.create name: 'Racer 1', damage: Racer::MAX_DAMAGE
+        race.racers.create name: 'Racer 2'
+        race.racers.create name: 'Racer 3'
+
+        race.roll 0, speed: :NORMAL
+      end
+
+      it { is_expected.to eql 'Racer 1 chose NORMAL speed, and rolled 0 and moved 0.  Racer 1 CRASHED!!!  Racer 2 rolls next!' }
     end
   end
 

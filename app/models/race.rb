@@ -31,6 +31,8 @@ class Race < ApplicationRecord
       'All racers CRASHED!!!  This race is over!'
     elsif over?
       "#{last_roll.racer.name} wins the race!  Congratulations!!!"
+    elsif last_roll.crashed?
+      "#{last_roll.racer.name} chose #{last_roll.speed} speed, and rolled #{last_roll.roll} and moved #{last_roll.move}.  #{last_roll.racer.name} CRASHED!!!  #{current_racer.name} rolls next!"
     else
       nil
     end
