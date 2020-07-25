@@ -4,7 +4,7 @@ var app = new Vue({
     return {
       finishLine: 0,
       racers: [],
-      raceMessage: null,
+      message: null,
       currentRacer: null,
       lastRoll: null,
       allCrashed: false,
@@ -20,15 +20,6 @@ var app = new Vue({
     },
     ready: function () {
       return (this.racers.length > 0)
-    },
-    message: function () {
-      if (this.raceMessage != null) {
-        return this.raceMessage
-      } else {
-        return ''.concat(this.lastRoll.racer.name + ' chose ' + this.lastRoll.speedType + ' speed, ')
-          .concat('and rolled ' + this.lastRoll.roll + ' and moved ' + this.lastRoll.move + '. ')
-          .concat(this.currentRacer.name + ' rolls next!')
-      }
     }
   },
   methods: {
@@ -38,7 +29,7 @@ var app = new Vue({
         .then(response => {
           this.racers = response.data.racers
           this.finishLine = response.data.finishLine
-          this.raceMessage = response.data.message
+          this.message = response.data.message
           this.currentRacer = response.data.currentRacer
           this.lastRoll = response.data.lastRoll
           this.allCrashed = response.data.allCrashed
@@ -72,7 +63,7 @@ var app = new Vue({
             .then(response => {
               this.racers = response.data.racers
               this.finishLine = response.data.finishLine
-              this.raceMessage = response.data.message
+              this.message = response.data.message
               this.currentRacer = response.data.currentRacer
               this.lastRoll = response.data.lastRoll
               this.allCrashed = response.data.allCrashed

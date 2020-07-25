@@ -19,7 +19,7 @@
       "crashed": false
     }
   ],
-  "message": null,
+  "message": "Alice chose NORMAL speed, and rolled 1 and moved 1.  Bob rolls next!",
   "currentRacer": {
     "id": 2,
     "name": "Bob",
