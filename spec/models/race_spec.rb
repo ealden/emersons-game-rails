@@ -46,6 +46,18 @@ RSpec.describe Race, type: :model do
 
       it { is_expected.to eql 'All racers CRASHED!!!  This race is over!' }
     end
+
+    context 'when one racer has crossed the finish line' do
+      before do
+        race.racers.create name: 'Racer 1'
+        racer = race.racers.create name: 'Racer 2', position: race.finish_line
+        race.racers.create name: 'Racer 3'
+
+        racer.roll 0, speed: :NORMAL
+      end
+
+      it { is_expected.to eql 'Racer 2 wins the race!  Congratulations!!!' }
+    end
   end
 
   describe :all_crashed? do
