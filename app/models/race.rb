@@ -23,7 +23,11 @@ class Race < ApplicationRecord
   end
 
   def message
-    nil
+    if racers.empty?
+      'Racers to starting line!'
+    else
+      nil
+    end
   end
 
   def last_roll

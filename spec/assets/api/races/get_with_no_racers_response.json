@@ -1,7 +1,7 @@
 {
   "id": 1,
   "racers": [],
-  "message": null,
+  "message": "Racers to starting line!",
   "currentRacer": null,
   "lastRoll": null,
   "finishLine": 10,

@@ -20,6 +20,14 @@ RSpec.describe Race, type: :model do
     end
   end
 
+  describe :message do
+    subject { race.message }
+
+    context 'when no racers have joined' do
+      it { is_expected.to eql 'Racers to starting line!' }
+    end
+  end
+
   describe :all_crashed? do
     subject { race.all_crashed? }
 
