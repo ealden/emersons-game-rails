@@ -31,14 +31,21 @@ class Race < ApplicationRecord
       'All racers CRASHED!!!  This race is over!'
     elsif over?
       "#{last_roll.racer.name} wins the race!  Congratulations!!!"
-    elsif last_roll.crashed?
-      "#{last_roll.racer.name} chose #{last_roll.speed} speed, and rolled #{last_roll.roll} and moved #{last_roll.move}.  #{last_roll.racer.name} CRASHED!!!  #{current_racer.name} rolls next!"
-    elsif last_roll.damaged? and last_roll.normal_speed?
-      "#{last_roll.racer.name} chose #{last_roll.speed} speed, and rolled #{last_roll.roll} and moved #{last_roll.move}.  #{last_roll.racer.name} has #{last_roll.new_damage} damage.  #{current_racer.name} rolls next!"
-    elsif last_roll.damaged? and last_roll.super_speed?
-      "#{last_roll.racer.name} chose #{last_roll.speed} speed, and rolled #{last_roll.roll} and moved #{last_roll.move}.  #{last_roll.racer.name} now has #{last_roll.new_damage} damage.  #{current_racer.name} rolls next!"
     else
-      "#{last_roll.racer.name} chose #{last_roll.speed} speed, and rolled #{last_roll.roll} and moved #{last_roll.move}.  #{current_racer.name} rolls next!"
+      message = "#{last_roll.racer.name} chose #{last_roll.speed} speed, " \
+        + "and rolled #{last_roll.roll} and moved #{last_roll.move}."
+
+      if last_roll.crashed?
+        message += "  #{last_roll.racer.name} CRASHED!!!"
+      elsif last_roll.damaged? and last_roll.normal_speed?
+        message += "  #{last_roll.racer.name} has #{last_roll.new_damage} damage."
+      elsif last_roll.damaged? and last_roll.super_speed?
+        message += "  #{last_roll.racer.name} now has #{last_roll.new_damage} damage."
+      end
+
+      message += "  #{current_racer.name} rolls next!"
+
+      message
     end
   end
 
@@ -64,5 +71,8 @@ class Race < ApplicationRecord
       next_rank = ((self.current_rank % self.racers.count) + 1)
 
       self.update current_rank: next_rank
+    end
+
+    def roll_message
     end
 end
