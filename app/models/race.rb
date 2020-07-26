@@ -23,30 +23,7 @@ class Race < ApplicationRecord
   end
 
   def message
-    if racers.empty?
-      'Racers to starting line!'
-    elsif last_roll.nil?
-      "Time to RACE!  #{current_racer.name} rolls first!"
-    elsif all_crashed?
-      'All racers CRASHED!!!  This race is over!'
-    elsif over?
-      "#{last_roll.racer.name} wins the race!  Congratulations!!!"
-    else
-      message = "#{last_roll.racer.name} chose #{last_roll.speed} speed, " \
-        + "and rolled #{last_roll.roll} and moved #{last_roll.move}."
-
-      if last_roll.crashed?
-        message += "  #{last_roll.racer.name} CRASHED!!!"
-      elsif last_roll.damaged? and last_roll.normal_speed?
-        message += "  #{last_roll.racer.name} has #{last_roll.new_damage} damage."
-      elsif last_roll.damaged? and last_roll.super_speed?
-        message += "  #{last_roll.racer.name} now has #{last_roll.new_damage} damage."
-      end
-
-      message += "  #{current_racer.name} rolls next!"
-
-      message
-    end
+    I18n.t message_key, message_values
   end
 
   def last_roll
@@ -73,6 +50,34 @@ class Race < ApplicationRecord
       self.update current_rank: next_rank
     end
 
-    def roll_message
+    def message_key
+      if racers.empty?
+        :no_racers
+      elsif last_roll.nil?
+        :not_started
+      elsif all_crashed?
+        :all_crashed
+      elsif over?
+        :race_over
+      elsif last_roll.crashed?
+        :racer_crashed
+      elsif last_roll.damaged? and last_roll.normal_speed?
+        :damaged_racer_normal_speed
+      elsif last_roll.damaged? and last_roll.super_speed?
+        :damaged_racer_super_speed
+      else
+        :racer_rolled
+      end
+    end
+
+    def message_values
+      {
+        current_racer:  current_racer&.name,
+        last_racer:     last_roll&.racer&.name,
+        last_speed:     last_roll&.speed,
+        last_roll:      last_roll&.roll,
+        last_move:      last_roll&.move,
+        last_damage:    last_roll&.new_damage
+      }
     end
 end
