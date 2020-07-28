@@ -3,7 +3,6 @@
   "racers": [],
   "message": "Racers to starting line!",
   "currentRacer": null,
-  "lastRoll": null,
   "finishLine": 10,
   "allCrashed": false,
   "over": false
