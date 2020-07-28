@@ -23,7 +23,7 @@ class Race < ApplicationRecord
   end
 
   def message
-    I18n.t message_key, message_values
+    I18n.t message_key, **message_values
   end
 
   def last_roll
