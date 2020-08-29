@@ -2,7 +2,6 @@ Given 'I am in a race' do
   Race.delete_all
 
   @race = Race.new_race
-  @race.update finish_line: 10
 
   @page = RacePage.new
 end
