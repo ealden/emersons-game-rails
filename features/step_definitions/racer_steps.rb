@@ -77,54 +77,52 @@ Then  'I must see the race result: WIN' do
 end
 
 Then  'I must now have a log entry with the following:' do
-  @last_roll = @race.last_roll
-
-  expect(@last_roll).not_to be_nil
-  expect(@last_roll.racer).to eql @racer
+  expect(@race.last_roll).not_to be_nil
+  expect(@race.last_roll.racer).to eql @racer
 end
 
 Then  'Position: {int}' do |position|
-  expect(@last_roll.position).to eql position
+  expect(@race.last_roll.position).to eql position
 end
 
 Then  'Damage: {int}' do |damage|
-  expect(@last_roll.damage).to eql damage
+  expect(@race.last_roll.damage).to eql damage
 end
 
 Then  'Speed: {string}' do |speed|
-  expect(@last_roll.speed).to eql speed
+  expect(@race.last_roll.speed).to eql speed
 end
 
 Then  'Roll: {int}' do |roll|
-  expect(@last_roll.roll).to eql roll
+  expect(@race.last_roll.roll).to eql roll
 end
 
 Then  'Move: {int}' do |move|
-  expect(@last_roll.move).to eql move
+  expect(@race.last_roll.move).to eql move
 end
 
 Then  'New Position: {int}' do |new_position|
-  expect(@last_roll.new_position).to eql new_position
+  expect(@race.last_roll.new_position).to eql new_position
 end
 
 Then  'New Damage: {int}' do |new_damage|
-  expect(@last_roll.new_damage).to eql new_damage
+  expect(@race.last_roll.new_damage).to eql new_damage
 end
 
 Then  'Crashed: "YES"' do
-  expect(@last_roll).to be_crashed
+  expect(@race.last_roll).to be_crashed
 end
 
 Then  'Crashed: "NO"' do
-  expect(@last_roll).not_to be_crashed
+  expect(@race.last_roll).not_to be_crashed
 end
 
 Then  'Win: "YES"' do
-  expect(@last_roll).to be_won
+  expect(@race.last_roll).to be_won
 end
 
 Then  'Win: "NO"' do
-  expect(@last_roll).not_to be_won
+  expect(@race.last_roll).not_to be_won
 end
 
 Then  'I must see the message: {string}' do |message|
