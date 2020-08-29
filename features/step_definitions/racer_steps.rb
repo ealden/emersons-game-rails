@@ -1,6 +1,4 @@
 Given 'I am in a race' do
-  Race.delete_all
-
   @race = Race.new_race
 
   @page = RacePage.new
