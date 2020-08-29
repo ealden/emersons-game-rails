@@ -4,17 +4,15 @@ Given 'I am in a race' do
   @race = Race.new_race
   @race.update finish_line: 10
 
-  @racer = @race.current_racer
-
   @page = RacePage.new
 end
 
 Given 'I am at position {int}' do |position|
-  @racer.update position: position
+  @race.current_racer.update position: position
 end
 
 Given 'I have damage of {int}' do |damage|
-  @racer.update damage: damage
+  @race.current_racer.update damage: damage
 end
 
 Given 'I see the finish line at position {int}' do |finish_line|
@@ -41,7 +39,6 @@ When  'I choose to start over in a new race' do
   @page.new_race
 
   @race = Race.last
-  @racer = @race.current_racer
 end
 
 When  'all racers have crashed!' do
@@ -61,24 +58,24 @@ When  'it\'s over, it\'s over' do
 end
 
 Then  'I must now be at position {int}' do |new_position|
-  expect(@page.position(@racer.id)).to eql new_position
+  expect(@page.position(@race.current_racer.id)).to eql new_position
 end
 
 Then  'I must now have damage of {int}' do |new_damage|
-  expect(@page.damage(@racer.id)).to eql new_damage
+  expect(@page.damage(@race.current_racer.id)).to eql new_damage
 end
 
 Then  'I must see the race result: --' do
-  expect(@page.position(@racer.id)).not_to eql @race.finish_line
+  expect(@page.position(@race.current_racer.id)).not_to eql @race.finish_line
 end
 
 Then  'I must see the race result: WIN' do
-  expect(@page.position(@racer.id)).to eql @race.finish_line
+  expect(@page.position(@race.current_racer.id)).to eql @race.finish_line
 end
 
 Then  'I must now have a log entry with the following:' do
   expect(@race.last_roll).not_to be_nil
-  expect(@race.last_roll.racer).to eql @racer
+  expect(@race.last_roll.racer).to eql @race.current_racer
 end
 
 Then  'Position: {int}' do |position|
