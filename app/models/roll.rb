@@ -9,10 +9,10 @@ class Roll < ApplicationRecord
   end
 
   def normal_speed?
-    self.speed == :NORMAL.to_s
+    :NORMAL == self.speed&.to_sym
   end
 
   def super_speed?
-    self.speed == :SUPER.to_s
+    :SUPER == self.speed&.to_sym
   end
 end
