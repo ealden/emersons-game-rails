@@ -74,8 +74,6 @@ class Racer < ApplicationRecord
     end
 
     def set_race_current_rank
-      unless self.race.current_rank
-        self.race.update current_rank: self.rank
-      end
+      self.race.update current_rank: self.rank unless self.race.current_rank
     end
 end
