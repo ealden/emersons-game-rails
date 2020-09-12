@@ -51,7 +51,7 @@ class Racer < ApplicationRecord
         damage = SUPER_DAMAGE
       end
 
-      move = [(move - self.damage), 0].max
+      move = [(move - self.damage), NO_MOVE].max
 
       [move, damage]
     end
