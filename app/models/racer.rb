@@ -1,6 +1,14 @@
 class Racer < ApplicationRecord
   MAX_DAMAGE = 6
 
+  NORMAL_DAMAGE = 0
+  SUPER_DAMAGE  = 2
+
+  NORMAL_MOVE_ODD   = 1
+  NORMAL_MOVE_EVEN  = 2
+
+  NO_MOVE = 0
+
   before_create :set_rank
   after_create  :set_race_current_rank
 
@@ -36,11 +44,11 @@ class Racer < ApplicationRecord
     def calculate roll, speed:
       case speed
       when :NORMAL
-        move = ((roll > 0) ? (roll.odd? ? 1 : 2) : 0)
-        damage = 0
+        move = ((roll > 0) ? (roll.odd? ? NORMAL_MOVE_ODD : NORMAL_MOVE_EVEN) : NO_MOVE)
+        damage = NORMAL_DAMAGE
       when :SUPER
         move = roll
-        damage = 2
+        damage = SUPER_DAMAGE
       end
 
       move = [(move - self.damage), 0].max
