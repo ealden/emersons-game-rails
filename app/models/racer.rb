@@ -16,7 +16,7 @@ class Racer < ApplicationRecord
 
   belongs_to :race
 
-  def roll roll, speed: nil
+  def roll roll, speed:
     move, damage = calculate roll, speed: speed
 
     self.position += move
