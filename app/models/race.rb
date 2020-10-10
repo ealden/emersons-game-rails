@@ -1,5 +1,5 @@
 class Race < ApplicationRecord
-  has_many :racers, dependent: :destroy
+  has_many :racers, -> { order :id }, dependent: :destroy
   has_many :rolls,  dependent: :destroy
 
   def self.new_race
