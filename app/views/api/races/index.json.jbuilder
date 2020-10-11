@@ -1,5 +1,5 @@
 json.id @race.id
-json.racers @race.racers do |racer|
+json.racers @race.racers.order(:id) do |racer|
   json.id       racer.id
   json.name     racer.name
   json.position racer.position
