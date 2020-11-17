@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -e
+
+echo ""
+echo "  Emerson's Game"
+echo ""
+
+# Check if Bundler is present
+if test ! $(which bundler); then
+  echo "  x You need to install Bundler:"
+  echo "    gem install bundler"
+  exit
+else
+  echo "  + Bundler found."
+fi
+
+echo "  + Installing dependencies..."
+bundle install --quiet
+yarn install --silent --no-progress
+
+echo "  + Running migrations..."
+rails db:drop
+rails db:create
+rails db:migrate
+
+echo "  + Seeding data..."
+rails db:seed
+
+echo ""
+echo "  We're ready to rock!"
