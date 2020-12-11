@@ -31,17 +31,20 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+end
+
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'site_prism'
 end
 
-group :development, :test do
-  gem 'rspec-rails', '~> 4.0.0'
-end
-
 group :production do
   gem 'pg'
 end
-
-# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
