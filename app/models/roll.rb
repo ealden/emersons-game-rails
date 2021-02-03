@@ -5,14 +5,14 @@ class Roll < ApplicationRecord
   belongs_to :racer
 
   def damaged?
-    self.new_damage.present? and (self.new_damage > NO_DAMAGE)
+    new_damage.present? and (new_damage > NO_DAMAGE)
   end
 
   def normal_speed?
-    :NORMAL == self.speed&.to_sym
+    :NORMAL == speed&.to_sym
   end
 
   def super_speed?
-    :SUPER == self.speed&.to_sym
+    :SUPER == speed&.to_sym
   end
 end

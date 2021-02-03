@@ -7,7 +7,7 @@ end
 module ActionDispatch
   class Response
     def json
-      JSON.parse self.body, symbolize_names: true
+      JSON.parse body, symbolize_names: true
     end
   end
 end

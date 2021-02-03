@@ -16,7 +16,7 @@ class Racer < ApplicationRecord
 
   belongs_to :race
 
-  def roll roll, speed:
+  def roll(roll, speed:)
     move, damage = calculate roll, speed: speed
 
     self.position += move
@@ -28,11 +28,11 @@ class Racer < ApplicationRecord
   end
 
   def position
-    [self[:position], self.race.finish_line].min
+    [self[:position], race.finish_line].min
   end
 
   def won?
-    self.position >= self.race.finish_line
+    self.position >= race.finish_line
   end
 
   def crashed?
@@ -41,39 +41,43 @@ class Racer < ApplicationRecord
 
   private
 
-    def calculate roll, speed:
-      case speed
-      when :NORMAL
-        move    = ((roll > 0) ? (roll.odd? ? NORMAL_MOVE_ODD : NORMAL_MOVE_EVEN) : NO_MOVE)
-        damage  = NORMAL_DAMAGE
-      when :SUPER
-        move    = roll
-        damage  = SUPER_DAMAGE
-      end
-
-      move = [(move - self.damage), NO_MOVE].max
-
-      [move, damage]
+  def calculate(roll, speed:)
+    case speed
+    when :NORMAL
+      move    = (if roll > 0
+                   roll.odd? ? NORMAL_MOVE_ODD : NORMAL_MOVE_EVEN
+                 else
+                   NO_MOVE
+                 end)
+      damage  = NORMAL_DAMAGE
+    when :SUPER
+      move    = roll
+      damage  = SUPER_DAMAGE
     end
 
-    def log roll, move, speed
-      self.rolls.create race:         self.race,
-                        position:     self.position_was,
-                        damage:       self.damage_was,
-                        speed:        speed,
-                        roll:         roll,
-                        move:         move,
-                        new_position: self.position,
-                        new_damage:   self.damage,
-                        crashed:      self.crashed?,
-                        won:          self.won?
-    end
+    move = [(move - self.damage), NO_MOVE].max
 
-    def set_rank
-      self.rank = Racer.count + 1
-    end
+    [move, damage]
+  end
 
-    def set_race_current_rank
-      self.race.update current_rank: self.rank unless self.race.current_rank
-    end
+  def log(roll, move, speed)
+    rolls.create race: race,
+                 position: position_was,
+                 damage: damage_was,
+                 speed: speed,
+                 roll: roll,
+                 move: move,
+                 new_position: self.position,
+                 new_damage: self.damage,
+                 crashed: crashed?,
+                 won: won?
+  end
+
+  def set_rank
+    self.rank = Racer.count + 1
+  end
+
+  def set_race_current_rank
+    race.update current_rank: rank unless race.current_rank
+  end
 end

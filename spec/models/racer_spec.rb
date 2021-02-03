@@ -58,7 +58,7 @@ RSpec.describe Racer, type: :model do
         expect(racer.position).to eql 0
 
         racer = race.racers.create name: 'Alice'
-        racer.roll -1, speed: :NORMAL
+        racer.roll(-1, speed: :NORMAL)
         expect(racer.position).to eql 0
       end
     end
@@ -123,13 +123,13 @@ RSpec.describe Racer, type: :model do
 
       racer.roll 6, speed: :SUPER
 
-      expect(racer.rolls.last).to have_attributes position:     1,
-                                                  damage:       2,
-                                                  speed:        'SUPER',
-                                                  roll:         6,
-                                                  move:         4,
+      expect(racer.rolls.last).to have_attributes position: 1,
+                                                  damage: 2,
+                                                  speed: 'SUPER',
+                                                  roll: 6,
+                                                  move: 4,
                                                   new_position: 5,
-                                                  new_damage:   4
+                                                  new_damage: 4
     end
   end
 

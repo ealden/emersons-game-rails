@@ -12,7 +12,7 @@ class RacePage < SitePrism::Page
   element :race_controls,       '#race-controls'
   element :race_over,           '#race-over'
 
-  def roll roll, speed:
+  def roll(roll, speed:)
     roll_field.set roll
 
     case speed
@@ -31,11 +31,11 @@ class RacePage < SitePrism::Page
     wait_until_processed
   end
 
-  def position id
+  def position(id)
     find("#test-racer-#{id}-position").text.to_i
   end
 
-  def damage id
+  def damage(id)
     find("#test-racer-#{id}-damage").text.to_i
   end
 
@@ -49,7 +49,7 @@ class RacePage < SitePrism::Page
 
   private
 
-    def wait_until_processed
-      wait_until_processing_field_invisible
-    end
+  def wait_until_processed
+    wait_until_processing_field_invisible
+  end
 end

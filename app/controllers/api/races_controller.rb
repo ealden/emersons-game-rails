@@ -13,10 +13,10 @@ class Api::RacesController < ApiController
     roll  = params[:roll].to_i
     speed = params[:speedType].to_sym
 
-    unless Rails.env.test?
-      race.roll speed: speed
-    else
+    if Rails.env.test?
       race.roll roll, speed: speed
+    else
+      race.roll speed: speed
     end
 
     head :ok

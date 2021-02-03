@@ -72,7 +72,9 @@ RSpec.describe Race, type: :model do
         race.roll 0, speed: :NORMAL
       end
 
-      it { is_expected.to eql 'Racer 1 chose NORMAL speed, and rolled 0 and moved 0.  Racer 1 CRASHED!!!  Racer 2 rolls next!' }
+      it {
+        is_expected.to eql 'Racer 1 chose NORMAL speed, and rolled 0 and moved 0.  Racer 1 CRASHED!!!  Racer 2 rolls next!'
+      }
     end
 
     context 'when last racer has damage and chose normal speed' do
@@ -84,7 +86,9 @@ RSpec.describe Race, type: :model do
         race.roll 0, speed: :NORMAL
       end
 
-      it { is_expected.to eql 'Racer 1 chose NORMAL speed, and rolled 0 and moved 0.  Racer 1 has 1 damage.  Racer 2 rolls next!' }
+      it {
+        is_expected.to eql 'Racer 1 chose NORMAL speed, and rolled 0 and moved 0.  Racer 1 has 1 damage.  Racer 2 rolls next!'
+      }
     end
 
     context 'when last racer has damage and chose super speed' do
@@ -96,7 +100,9 @@ RSpec.describe Race, type: :model do
         race.roll 0, speed: :SUPER
       end
 
-      it { is_expected.to eql 'Racer 1 chose SUPER speed, and rolled 0 and moved 0.  Racer 1 now has 3 damage.  Racer 2 rolls next!' }
+      it {
+        is_expected.to eql 'Racer 1 chose SUPER speed, and rolled 0 and moved 0.  Racer 1 now has 3 damage.  Racer 2 rolls next!'
+      }
     end
 
     context 'when last racer has no damage' do
