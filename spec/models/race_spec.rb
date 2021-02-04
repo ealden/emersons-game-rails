@@ -12,8 +12,8 @@ RSpec.describe Race, type: :model do
       it 'is expected to return last roll' do
         racer = race.racers.create name: 'Racer 1'
 
-        racer.roll(1, speed: :NORMAL)
-        racer.roll(2, speed: :NORMAL)
+        racer.roll 1, speed: :NORMAL
+        racer.roll 2, speed: :NORMAL
 
         expect(subject).to eql race.rolls.last
       end
