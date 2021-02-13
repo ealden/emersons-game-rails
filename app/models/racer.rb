@@ -16,7 +16,7 @@ class Racer < ApplicationRecord
 
   belongs_to :race
 
-  def roll(roll, speed:)
+  def roll roll, speed:
     move, damage = calculate roll, speed: speed
 
     self.position += move
@@ -41,7 +41,7 @@ class Racer < ApplicationRecord
 
   private
 
-  def calculate(roll, speed:)
+  def calculate roll, speed:
     case speed
     when :NORMAL
       move    = (if roll > 0
@@ -60,7 +60,7 @@ class Racer < ApplicationRecord
     [move, damage]
   end
 
-  def log(roll, move, speed)
+  def log roll, move, speed
     rolls.create race: race,
                  position: position_was,
                  damage: damage_was,
