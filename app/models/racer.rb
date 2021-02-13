@@ -44,11 +44,7 @@ class Racer < ApplicationRecord
   def calculate roll, speed:
     case speed
     when :NORMAL
-      move    = (if roll > 0
-                   roll.odd? ? NORMAL_MOVE_ODD : NORMAL_MOVE_EVEN
-                 else
-                   NO_MOVE
-                 end)
+      move    = ((roll > 0) ? (roll.odd? ? NORMAL_MOVE_ODD : NORMAL_MOVE_EVEN) : NO_MOVE)
       damage  = NORMAL_DAMAGE
     when :SUPER
       move    = roll
