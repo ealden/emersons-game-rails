@@ -2,6 +2,8 @@ Given 'I am in a race' do
   @race = Race.new_race
 
   @page = RacePage.new
+
+  @page.load
 end
 
 Given 'I am at position {int}' do |position|
@@ -21,26 +23,19 @@ When 'I choose {string} speed' do |speed|
 end
 
 When 'I roll a {int}' do |roll|
-  @page.load
-
   @page.roll roll, speed: @speed
 end
 
 When 'I try to view the race' do
-  @page.load
 end
 
 When 'I choose to start over in a new race' do
-  @page.load
-
   @page.new_race
 
   @race = Race.last
 end
 
 When 'all racers have crashed!' do
-  @page.load
-
   @page.roll 1, speed: :NORMAL
 
   Racer.all.each do |racer|
