@@ -12,7 +12,7 @@ class RacePage < SitePrism::Page
   element :race_controls,       '#race-controls'
   element :race_over,           '#race-over'
 
-  def roll(roll, speed:)
+  def roll roll, speed:
     roll_field.set roll
 
     case speed
