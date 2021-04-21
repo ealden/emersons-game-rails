@@ -31,12 +31,12 @@ class RacePage < SitePrism::Page
     wait_until_processed
   end
 
-  def position(id)
-    find("#test-racer-#{id}-position").text.to_i
+  def position_of racer
+    find("#test-racer-#{racer.id}-position").text.to_i
   end
 
-  def damage(id)
-    find("#test-racer-#{id}-damage").text.to_i
+  def damage_of racer
+    find("#test-racer-#{racer.id}-damage").text.to_i
   end
 
   def message

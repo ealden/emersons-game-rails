@@ -43,19 +43,19 @@ When 'all racers have crashed!' do
 end
 
 Then 'I must now be at position {int}' do |new_position|
-  expect(@page.position(@race.current_racer.id)).to eql new_position
+  expect(@page.position_of(@race.current_racer)).to eql new_position
 end
 
 Then 'I must now have damage of {int}' do |new_damage|
-  expect(@page.damage(@race.current_racer.id)).to eql new_damage
+  expect(@page.damage_of(@race.current_racer)).to eql new_damage
 end
 
 Then 'I must see the race result: --' do
-  expect(@page.position(@race.current_racer.id)).not_to eql @race.finish_line
+  expect(@page.position_of(@race.current_racer)).not_to eql @race.finish_line
 end
 
 Then 'I must see the race result: WIN' do
-  expect(@page.position(@race.current_racer.id)).to eql @race.finish_line
+  expect(@page.position_of(@race.current_racer)).to eql @race.finish_line
 end
 
 Then 'I must now have a log entry with the following:' do
