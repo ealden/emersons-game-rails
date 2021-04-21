@@ -26,9 +26,6 @@ When 'I roll a {int}' do |roll|
   @page.roll roll, speed: @speed
 end
 
-When 'I try to view the race' do
-end
-
 When 'I choose to start over in a new race' do
   @page.new_race
 
