@@ -35,9 +35,7 @@ end
 When 'all racers have crashed!' do
   @page.roll 1, speed: :NORMAL
 
-  Racer.all.each do |racer|
-    racer.update damage: Racer::MAX_DAMAGE
-  end
+  Racer.update_all damage: Racer::MAX_DAMAGE
 
   @page.load
 end
