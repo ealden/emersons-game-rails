@@ -3,10 +3,6 @@ class Api::RacesController < ApiController
     @race = Race.last
   end
 
-  def settings
-    @test_mode = Rails.env.test?
-  end
-
   def roll
     race = Race.last
 

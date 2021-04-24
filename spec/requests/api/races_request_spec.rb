@@ -34,15 +34,6 @@ RSpec.describe Api::RacesController, type: :request do
     end
   end
 
-  describe 'GET /api/races/settings' do
-    it 'must return race settings' do
-      get '/api/races/settings'
-
-      expect(response).to have_http_status :ok
-      expect(response.json).to eql 'api/races/settings/get_response'.json
-    end
-  end
-
   describe 'POST /api/races/roll' do
     it 'must roll for racer' do
       race.racers.create name: 'Alice'
