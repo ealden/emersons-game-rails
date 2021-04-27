@@ -89,19 +89,19 @@ Then 'New Damage: {int}' do |new_damage|
   expect(@race.last_roll.new_damage).to eql new_damage
 end
 
-Then 'Crashed: "YES"' do
+Then 'Crashed: YES' do
   expect(@race.last_roll).to be_crashed
 end
 
-Then 'Crashed: "NO"' do
+Then 'Crashed: NO' do
   expect(@race.last_roll).not_to be_crashed
 end
 
-Then 'Win: "YES"' do
+Then 'Win: YES' do
   expect(@race.last_roll).to be_won
 end
 
-Then 'Win: "NO"' do
+Then 'Win: NO' do
   expect(@race.last_roll).not_to be_won
 end
 
