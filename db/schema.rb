@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_11_181204) do
+ActiveRecord::Schema.define(version: 2021_12_25_164841) do
 
   create_table "active_storage_blobs", force: :cascade do |t|
     t.string "service_name", null: false
