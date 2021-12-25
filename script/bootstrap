@@ -14,17 +14,8 @@ else
   echo "  + Bundler found."
 fi
 
-if test ! $(which yarn); then
-  echo "  x You need to install Yarn:"
-  echo "    npm install -g yarn"
-  exit
-else
-  echo "  + Yarn found."
-fi
-
 echo "  + Installing dependencies..."
 bundle install --quiet
-yarn install --silent --no-progress
 
 echo "  + Running migrations..."
 rails db:drop
