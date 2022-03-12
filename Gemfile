@@ -39,7 +39,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 
-  gem 'cucumber-rails', require: false, github: 'cucumber/cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'site_prism'
 end
