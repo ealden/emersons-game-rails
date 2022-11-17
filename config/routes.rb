@@ -3,7 +3,6 @@ Rails.application.routes.draw do
     resources :races do
       collection do
         post :roll
-        post 'new', to: 'races#new_race'
       end
     end
     resources :settings, only: [:index]

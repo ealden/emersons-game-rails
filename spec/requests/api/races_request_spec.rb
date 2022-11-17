@@ -52,9 +52,9 @@ RSpec.describe Api::RacesController, type: :request do
     end
   end
 
-  describe 'POST /api/races/new' do
+  describe 'POST /api/races' do
     it 'must create a new race' do
-      post '/api/races/new', params: {}
+      post '/api/races', params: {}
 
       expect(response).to have_http_status :ok
       expect(Race.count).to eql 1

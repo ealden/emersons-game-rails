@@ -68,7 +68,7 @@ const EmersonsGame = {
       this.processing = true
 
       axios
-        .post('/api/races/new', {})
+        .post('/api/races', {})
         .then(response => {
           this.fetchRace()
         })
